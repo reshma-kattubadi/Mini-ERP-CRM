@@ -4,7 +4,10 @@ import pool from "./config/db";
 import authRoutes from "./routes/authRoutes";
 import { verifyToken } from "./middleware/authMiddleware";
 import customerRoutes from "./routes/customerRoutes";
-
+import productRoutes from "./routes/productRoutes";
+import stockRoutes from "./routes/stockRoutes";
+import challanRoutes from "./routes/challanRoutes";
+import dashboardRoutes from "./routes/dashboardRoutes";
 dotenv.config();
 
 const app = express();
@@ -15,7 +18,10 @@ app.use(express.json());
 // Routes
 app.use("/auth", authRoutes);
 app.use("/customers", customerRoutes);
-
+app.use("/products", productRoutes);
+app.use("/stock-movements", stockRoutes);
+app.use("/challans", challanRoutes);
+app.use("/dashboard", dashboardRoutes);
 // Protected Dashboard Route
 app.get("/dashboard", verifyToken, (req, res) => {
   res.json({
